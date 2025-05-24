@@ -1,0 +1,81 @@
+{
+    "name": "crewai-vscode-extension",
+    "displayName": "CrewAI VSCode Extension",
+    "description": "VSCode extension to help develop, debug and manage CrewAI projects.",
+    "version": "0.0.1",
+    "publisher": "YourPublisherName", // Placeholder
+    "engines": {
+        "vscode": "^1.80.0" // Specify a recent VSCode version
+    },
+    "categories": [
+        "Linters",
+        "Snippets",
+        "Programming Languages",
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:crewai-vscode-extension.helloWorld",
+        "onCommand:crewai-vscode-extension.createCrew",
+        "onCommand:crewai-vscode-extension.createFlow",
+        "onCommand:crewai-vscode-extension.runCrewOrFlow",
+        "onCommand:crewai-vscode-extension.chatWithCrewOrFlow",
+        "onCommand:crewai-vscode-extension.viewTaskLogs",
+        "onCommand:crewai-vscode-extension.runTests"
+    ],
+    "main": "./out/extension.js", // Entry point of the extension (compiled JS)
+    "contributes": {
+        "commands": [
+            {
+                "command": "crewai-vscode-extension.helloWorld",
+                "title": "CrewAI: Hello World"
+            },
+            {
+                "command": "crewai-vscode-extension.createCrew",
+                "title": "CrewAI: New Crew Project"
+            },
+            {
+                "command": "crewai-vscode-extension.createFlow",
+                "title": "CrewAI: New Flow Project"
+            },
+            {
+                "command": "crewai-vscode-extension.runCrewOrFlow",
+                "title": "CrewAI: Run Crew/Flow File"
+            },
+            {
+                "command": "crewai-vscode-extension.chatWithCrewOrFlow",
+                "title": "CrewAI: Chat with Crew/Flow"
+            },
+            {
+                "command": "crewai-vscode-extension.viewTaskLogs",
+                "title": "CrewAI: View Last Task Outputs"
+            },
+            {
+                "command": "crewai-vscode-extension.runTests",
+                "title": "CrewAI: Run Tests"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "python",
+                "path": "./crewai.code-snippets"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "lint": "eslint src --ext ts"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.80.0",
+        "@types/node": "18.x", // Or a more recent LTS version
+        "eslint": "^8.0.0", // Adjust version as needed
+        "@typescript-eslint/parser": "^5.0.0", // Adjust version as needed
+        "@typescript-eslint/eslint-plugin": "^5.0.0", // Adjust version as needed
+        "typescript": "^5.0.0" // Adjust version as needed
+    },
+    "dependencies": {
+        // Future dependencies for CLI interaction, etc.
+    }
+}

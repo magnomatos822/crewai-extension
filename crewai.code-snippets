@@ -1,0 +1,126 @@
+{
+    "CrewAI Agent": {
+        "prefix": "crewAgent",
+        "body": [
+            "from crewai import Agent",
+            "",
+            "${1:agent_name} = Agent(",
+            "\trole='${2:Enter Agent Role}',",
+            "\tgoal='${3:Define Agent Goal}',",
+            "\tbackstory=(\"\"\"",
+            "\t\t${4:Provide a detailed backstory for the agent.}",
+            "\t\"\"\"),",
+            "\ttools=[",
+            "\t\t# Add tool instances here, e.g., search_tool",
+            "\t\t# ${5:tool_instance}",
+            "\t],",
+            "\tallow_delegation=${6:False},",
+            "\tverbose=${7:True}",
+            "\t# llm=${8:your_llm_instance} # Optional: Configure a specific LLM for this agent",
+            ")"
+        ],
+        "description": "Creates a new CrewAI Agent definition."
+    },
+    "CrewAI Task": {
+        "prefix": "crewTask",
+        "body": [
+            "from crewai import Task",
+            "",
+            "${1:task_name} = Task(",
+            "\tdescription=(\"\"\"",
+            "\t\t${2:Describe the task in detail.}",
+            "\t\tExample: Research the latest advancements in AI for healthcare.",
+            "\t\"\"\"),",
+            "\texpected_output=(\"\"\"",
+            "\t\t${3:Specify the expected output format or content.}",
+            "\t\tExample: A comprehensive report summarizing key AI advancements, including sources.",
+            "\t\"\"\"),",
+            "\tagent=${4:agent_instance},",
+            "\t# tools=[${5:optional_tool_instance}], # Optional: Specify tools if different from agent's default tools",
+            "\t# async_execution=${6:False}, # Optional: Set to True for asynchronous execution",
+            "\t# context=[${7:optional_task_instance}], # Optional: List of prerequisite task instances",
+            "\t# output_file='${8:path/to/output_file.md}' # Optional: Specify a file to save the task output"
+            ")"
+        ],
+        "description": "Creates a new CrewAI Task definition."
+    },
+    "CrewAI Custom Tool": {
+        "prefix": "crewTool",
+        "body": [
+            "from crewai_tools import BaseTool",
+            "",
+            "class ${1:MyCustomTool}(BaseTool):",
+            "\tname: str = \"${2:Name of your custom tool}\"",
+            "\tdescription: str = \"${3:Brief description of what your tool does and its input parameters}\"",
+            "",
+            "\tdef _run(self, ${4:argument_name}: str) -> str:",
+            "\t\t# Your tool's logic here",
+            "\t\t# Example: return f\"Processed {argument_name}\"",
+            "\t\t${5:return \"Result of the tool execution\"}",
+            "",
+            "# To use this tool, instantiate it:",
+            "# ${6:tool_instance} = ${1:MyCustomTool}()"
+        ],
+        "description": "Creates a new custom CrewAI Tool class."
+    },
+    "CrewAI Crew": {
+        "prefix": "crewCrew",
+        "body": [
+            "from crewai import Crew, Process",
+            "",
+            "${1:my_crew} = Crew(",
+            "\tagents=[",
+            "\t\t${2:agent1},",
+            "\t\t# Add more agent instances here",
+            "\t],",
+            "\ttasks=[",
+            "\t\t${3:task1},",
+            "\t\t# Add more task instances here",
+            "\t],",
+            "\tprocess=Process.${4:sequential},  # Options: sequential, hierarchical",
+            "\tverbose=${5:True},",
+            "\t# memory=${6:False}, # Optional: Set to True to enable memory for the crew",
+            "\t# cache=${7:False}, # Optional: Set to True to enable caching for the crew",
+            "\t# manager_llm=${8:your_llm_instance}, # Optional: LLM for the hierarchical manager agent",
+            "\t# output_log_file=${9:False} # Optional: Path to a file to save execution logs, e.g., 'crew_execution.log'"
+            ")",
+            "",
+            "# To run the crew:",
+            "# result = ${1:my_crew}.kickoff()"
+        ],
+        "description": "Creates a new CrewAI Crew definition."
+    },
+    "CrewAI Flow (Basic)": {
+        "prefix": "crewFlow",
+        "body": [
+            "# Basic structure for a CrewAI Flow (conceptual)",
+            "# Actual implementation may vary based on CrewAI's specific Flow API.",
+            "",
+            "# from crewai import Flow, Crew, Task, Agent # Ensure necessary imports",
+            "",
+            "# Define your agents, tasks, and crews as usual",
+            "# agent_example = Agent(...)",
+            "# task_example = Task(...)",
+            "# crew_example = Crew(...)",
+            "",
+            "def ${1:my_flow_function}():",
+            "\tprint(\"Starting the flow...\")",
+            "\t# Step 1: Execute a task or a crew",
+            "\t# result_step1 = task_example.execute() # or crew_example.kickoff()",
+            "\t${2:# Add flow logic here}",
+            "",
+            "\t# Step 2: Conditional execution based on result_step1",
+            "\t# if result_step1 == 'some_condition':",
+            "\t#     print('Condition met, executing next step')",
+            "\t# else:",
+            "\t#     print('Condition not met')",
+            "\t${3}",
+            "\tprint(\"Flow finished.\")",
+            "",
+            "# To run the flow (this is a conceptual way, actual execution might differ)",
+            "# if __name__ == '__main__':",
+            "#     ${1:my_flow_function}()"
+        ],
+        "description": "Creates a basic conceptual structure for a CrewAI Flow. Adapt as per specific CrewAI Flow API."
+    }
+}
