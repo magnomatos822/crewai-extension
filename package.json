@@ -1,0 +1,131 @@
+{
+    "name": "crewai-vscode-extension",
+    "displayName": "CrewAI Helper",
+    "description": "Extensão VSCode para auxiliar no desenvolvimento de agentes e crews com CrewAI. Fornece snippets, criação de projetos e comandos para executar e interagir com suas crews.",
+    "version": "0.1.0",
+    "publisher": "your-publisher-name", 
+    "engines": {
+        "vscode": "^1.80.0"
+    },
+    "categories": [
+        "Programming Languages",
+        "Snippets",
+        "Other"
+    ],
+    "keywords": [
+        "crewai",
+        "ai agents",
+        "multi-agent",
+        "python",
+        "automation"
+    ],
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/placeholder/vscode-crewai-extension.git"
+    },
+    "bugs": {
+        "url": "https://github.com/placeholder/vscode-crewai-extension/issues"
+    },
+    "icon": "images/icon.png", // Assuming an icon will be added later
+    "activationEvents": [
+        "onCommand:crewai-vscode-extension.helloWorld", // Retained for now, can be removed if not used
+        "onCommand:crewai-vscode-extension.createProject",
+        "onCommand:crewai-vscode-extension.runCrewFile",
+        "onCommand:crewai-vscode-extension.chatWithCrew",
+        "onCommand:crewai-vscode-extension.viewTaskLogs",
+        "onCommand:crewai-vscode-extension.runTests"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "crewai-vscode-extension.helloWorld",
+                "title": "CrewAI: Hello World" // Retained for now
+            },
+            {
+                "command": "crewai-vscode-extension.createProject",
+                "title": "CrewAI: Create New Project (Crew/Flow)"
+            },
+            {
+                "command": "crewai-vscode-extension.runCrewFile",
+                "title": "CrewAI: Run This Crew/Flow File"
+            },
+            {
+                "command": "crewai-vscode-extension.chatWithCrew",
+                "title": "CrewAI: Chat with This Crew/Flow"
+            },
+            {
+                "command": "crewai-vscode-extension.viewTaskLogs",
+                "title": "CrewAI: View Last Task Outputs"
+            },
+            {
+                "command": "crewai-vscode-extension.runTests",
+                "title": "CrewAI: Run Tests"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "when": "resourceLangId == python",
+                    "command": "crewai-vscode-extension.runCrewFile",
+                    "group": "navigation@1"
+                },
+                {
+                    "when": "resourceLangId == python",
+                    "command": "crewai-vscode-extension.chatWithCrew",
+                    "group": "navigation@2"
+                },
+                {
+                    "when": "resourceLangId == python",
+                    "command": "crewai-vscode-extension.viewTaskLogs",
+                    "group": "navigation@3"
+                },
+                {
+                    "when": "resourceLangId == python",
+                    "command": "crewai-vscode-extension.runTests",
+                    "group": "navigation@4"
+                }
+            ],
+            "commandPalette": [
+                {
+                    "command": "crewai-vscode-extension.createProject",
+                    "when": "true" // Always available
+                },
+                {
+                    "command": "crewai-vscode-extension.viewTaskLogs",
+                    "when": "resourceLangId == python"
+                },
+                {
+                    "command": "crewai-vscode-extension.runTests",
+                    "when": "resourceLangId == python"
+                }
+                // Note: runCrewFile and chatWithCrew are primarily editor/context, 
+                // but could be added to commandPalette with "when": "resourceLangId == python" if desired
+            ]
+        },
+        "snippets": [
+            {
+                "language": "python",
+                "path": "./snippets/crewai.code-snippets"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "lint": "eslint src --ext ts"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.80.0",
+        "@types/node": "18.x",
+        "eslint": "^8.0.0",
+        "@typescript-eslint/parser": "^5.0.0",
+        "@typescript-eslint/eslint-plugin": "^5.0.0",
+        "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        // No runtime dependencies yet
+    }
+}
